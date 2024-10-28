@@ -24,8 +24,10 @@ def findMinorPath(vector,k) -> int:
             pos = sneakPos[0]
         else:
             pos = sneakPos[1]
-        sum += abs(vector[pos])
-        sum = election(pos,sum,k,vector)
+        sum1 = abs(vector[sneakPos[0]])
+        resultado1 = election(sneakPos[0],sum1,k,vector)
+        sum2 = abs(vector[sneakPos[1]])
+        resultado2 = election(sneakPos[1],sum2,k,vector)
     return sum
 
 def minPos(a1,a2,currentPos,vector):
@@ -38,17 +40,14 @@ def minPos(a1,a2,currentPos,vector):
     
 def election(sneakPos,sum,n,vector):
     if n>0:
-        if sneakPos-1>0:
-            if not sneakPos+1>len(vector):
-                #miro cual de las 2 opciones esta mas cerca y en caso de empate cojo izquierda
-                newVulues=minPos(sneakPos-1,sneakPos+1,sneakPos,vector)
-                return election(newVulues[0],sum+newVulues[1],n-1,vector)
-            else:
-                dif = abs(-(vector[sneakPos-1])+vector[sneakPos])
-                return election(sneakPos-1,sum+dif,n-1,vector)
-        elif not sneakPos+1>len(vector):
+        if sneakPos-1>0  and vector[sneakPos-1] != 0:
+            dif = abs(-(vector[sneakPos-1])+vector[sneakPos])
+            vector[sneakPos] = 0
+            sum = election(sneakPos-1,dif , n-1, vector)
+        if not sneakPos+1>=len(vector):
             dif = abs(-(vector[sneakPos])+vector[sneakPos+1])
-            return election(sneakPos+1,sum+dif,n-1,vector)
+            vector[sneakPos] = 0
+            sum = election(sneakPos+1,dif , n-1, vector)
     return sum
 
 
