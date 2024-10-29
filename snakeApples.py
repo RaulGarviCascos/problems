@@ -43,11 +43,11 @@ def election(sneakPos,sum,n,vector):
         if sneakPos-1>0  and vector[sneakPos-1] != 0:
             dif = abs(-(vector[sneakPos-1])+vector[sneakPos])
             vector[sneakPos] = 0
-            sum = election(sneakPos-1,dif , n-1, vector)
+            election(sneakPos-1,sum+dif, n-1, vector)
         if not sneakPos+1>=len(vector):
             dif = abs(-(vector[sneakPos])+vector[sneakPos+1])
             vector[sneakPos] = 0
-            sum = election(sneakPos+1,dif , n-1, vector)
+            election(sneakPos+1,sum+dif , n-1, vector)
     return sum
 
 
