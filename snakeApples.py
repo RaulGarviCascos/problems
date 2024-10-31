@@ -71,8 +71,8 @@ def findMinorPathVoraz(vector,k) -> int:
             if rightPos>=len(vector):
                 cantRight = True
             else:
-                while rightPos>=len(vector) and rightPos in visitados:
-                    rightPos-=1
+                while rightPos<=len(vector) and rightPos in visitados:
+                    rightPos+=1
             
             if cantLeft:
                 nextPos = rightPos
@@ -94,6 +94,7 @@ def findMinorPathVoraz(vector,k) -> int:
        sum=easyWay(sneakFinded,k,vector)
 
     return sum
+
     
 def easyWay(sneakFinded,k,vector):
     apples = 1
@@ -111,8 +112,6 @@ def easyWay(sneakFinded,k,vector):
         apples+=1
     return sum
 
-
-    
 def findInitSnake(vector):
     sneakPos = (0,0)
     sneakFinded = -1                            #si es -1, significa que todas las posiciones son negativas y esta al final
@@ -162,23 +161,9 @@ def minPos(a1,a2,currentPos,vector):
     else:
         return a2,dif2
 
-        
-    
-def simpleElection(sneakPos,sum,n,vector,visitados):
-    if n>0:
-        prevPos = sneakPos -1
-        nextPos = sneakPos +1
-        while prevPos>=0 and prevPos not in visitados:
-            prevPos-=1
-        while nextPos<len(vector) and nextPos not in visitados:
-            nextPos+=1
-        posMin,valMin = minPos(prevPos,nextPos,sneakPos,vector)
-        return simpleElection(posMin,sum+valMin, n-1, vector, visitados)
-    else:
-        return sum
 
-vector = [-20,5,10] # -> correct path 5,15,-20 = 35
-k=3
+vector = [-30,-20,-10,-5,1,2,10,30,50] # -> correct path 5,15,-20 = 35
+k=9
 print("Vector:",vector)
 print("n =",len(vector))
 print("k:",k)
