@@ -7,10 +7,10 @@ def maxProfit(prices):
     lastResta = 0
     while pos<n:
         elemento = prices[pos]
-        if min!=-1 and elemento>max:
-            max=elemento
-        elif min==-1:
+        if min==-1:
             min = elemento
+        elif elemento>max:
+            max=elemento
         if elemento<=min and pos+1<n:
             lastMin = min
             min=elemento
@@ -33,7 +33,7 @@ def easyWay(prices):
                 maxSol = resta
     return maxSol
 
-prices = [7,1,5,3,6,4]
+prices = [7,6,4,3,1]
 
 
 print(prices)
