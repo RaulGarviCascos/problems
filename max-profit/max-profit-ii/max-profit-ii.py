@@ -28,17 +28,6 @@ def maxProfit(prices):
     return sumaTotal 
 
 
-def easyWay(prices):
-    maxSol = 0
-    for i in range(len(prices)):
-        for j in range(i,len(prices)):
-            minuendo = prices[j]
-            sustraendo = prices[i]
-            resta = minuendo-sustraendo
-            if resta > maxSol:
-                maxSol = resta
-    return maxSol
-
 prices = [2,4,1]
 
 
